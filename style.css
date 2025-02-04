@@ -1,5 +1,6 @@
 h1 {
-  font: 60px Arial Black;
+  font: 60px Arial;
+  color: rgba(255, 255, 255, 0.753);
   margin-bottom: -15px;
   margin-top: -15px
 }
@@ -7,4 +8,21 @@ h1 {
 h4 {
   margin-bottom: -15px;
   text-align: center;
+  color: rgba(255, 255, 255, 0.753);
+}
+
+p {
+  color: rgba(255, 255, 255, 0.753);
+}
+
+a:link {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
 }
