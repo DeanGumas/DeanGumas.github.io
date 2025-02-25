@@ -1,7 +1,7 @@
 async function runModel() {
     try {
         // Load the ONNX model
-        const session = await ort.InferenceSession.create("model.onnx");
+        const session = await ort.InferenceSession.create("https://deangumas.github.io/model.onnx");
 
         // Define input tensor (ensure it's in the correct format)
         const inputTensor = new ort.Tensor("float32", new Float32Array([1.0, 2.0]), [1, 2]);
