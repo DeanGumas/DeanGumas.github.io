@@ -3,20 +3,17 @@ async function runModel() {
         // Load the ONNX model
         const session = await ort.InferenceSession.create("https://deangumas.github.io/model.onnx");
 
-        // Define input tensor (ensure it's in the correct format)
-        const inputTensor = new ort.Tensor("float32", new Float32Array([1.0, 2.0]), [1, 2]);
+        // Example input data (ensure it matches your model's input shapes)
+        const x_input = new ort.Tensor("float32", new Float32Array(6 * 10, [1, 6, 10])); // Batch size 1
+        const d_input = new ort.Tensor("float32", new Float32Array([0.5]), [1, 1]); // Batch size 1
 
-        // Prepare input feeds
-        const feeds = { "input_name": inputTensor }; // Replace "input_name" with actual input name
-
-        // Run inference
+        const feeds = { "player_data": x_input, "team_rating": d_input };
         const results = await session.run(feeds);
 
-        // Extract output tensor (replace "output_name" with actual output name)
-        const outputTensor = results["output_name"]; 
+        console.log(results["score_prediction"].data);
 
         // Display result
-        document.getElementById("output").innerText = `Model Output: ${outputTensor.data}`;
+        document.getElementById("output").innerText = `Model Output: ${results["score_prediction"].data}`;
     } catch (error) {
         console.error("Error running the model:", error);
     }
