@@ -8,6 +8,10 @@
     <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+
+<script src="model.js"></script>
+
  <!-- The body of the webpage, where all visible stuff lies. -->
  <body style="background-image: url('background-image.jpg')">
    <h1 align="center" style="font-family:arial; font-size:60px;"> Dean Gumas </h1>
@@ -27,9 +31,12 @@
 	<!--This draws the Canvas on the webpage -->
       <canvas id="mycanvas"></canvas>
     </p>
+    <h2>ONNX Runtime Web - Simple Model</h2>
+      <button onclick="runModel()">Run Model</button>
+    <p id="output"></p>
     <p align="center" style="font-family:verdana">
-  gumas@usc.edu
-	571-235-7384
+      gumas@usc.edu
+      571-235-7384
     </p>
  </body>
 
