@@ -31,8 +31,21 @@
 	<!--This draws the Canvas on the webpage -->
       <canvas id="mycanvas"></canvas>
     </p>
-    <h2>ONNX Runtime Web - Simple Model</h2>
-      <button onclick="runModel()">Run Model</button>
+    <h2>Premier League Fantasy Score Predictor - RNN + Attention Model</h2>
+    <form>
+      <label for="positions">Choose a position:</label>
+      <select id="positions" name="positions">
+        <option hidden disabled selected value></option>
+        <option value="GK">Goalkeeper</option>
+        <option value="DEF">Defender</option>
+        <option value="MID">Midfielder</option>
+        <option value="FWD">Forward</option>
+      </select>
+      <label for="players">Choose a player:</label>
+      <select id="players" name="players"></select>
+    </form>
+    
+    <button onclick="runModel()">Run Model</button>
     <p id="output"></p>
     <p id="real_output"></p>
     <p align="center" style="font-family:verdana">
