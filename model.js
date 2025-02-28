@@ -5,6 +5,11 @@ var fwd_data;
 
 var gk_session;
 
+// Add on select callback for position select box
+$("#positions").on("change", function(e) {
+    console.log(e);
+});
+
 async function loadPlayerData(){
     // Load all player data from JSON files
     const gk_request = await fetch("https://deangumas.github.io/data/GK_2021-22.json");
@@ -20,7 +25,10 @@ async function loadPlayerData(){
     fwd_data = await fwd_request.json();
 
     // Load ONNX models
-    gk_session = await ort.InferenceSession.create("https://deangumas.github.io/model.onnx");
+    gk_session = await ort.InferenceSession.create("https://deangumas.github.io/models/GK_model.onnx");
+    def_session = await ort.InferenceSession.create("https://deangumas.github.io/models/DEF_model.onnx");
+    mid_session = await ort.InferenceSession.create("https://deangumas.github.io/models/MID_model.onnx");
+    fwd_session = await ort.InferenceSession.create("https://deangumas.github.io/models/FWD_model.onnx");
 }
 
 async function runModel() {
