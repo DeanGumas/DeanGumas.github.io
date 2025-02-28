@@ -6,8 +6,38 @@ var fwd_data;
 var gk_session;
 
 // Add on select callback for position select box
-$("#positions").on("change", function(e) {
-    console.log(e);
+$("#positions").on("change", function() {
+    $("#players").empty();
+    switch($(this).val()){
+        case "GK":
+            for (const [key, value] of Object.entries(gk_data)) {
+                $('#players').append($('<option>', {
+                    text: key
+                }));
+            }
+            break;
+        case "DEF":
+            for (const [key, value] of Object.entries(def_data)) {
+                $('#players').append($('<option>', {
+                    text: key
+                }));
+            }
+            break;
+        case "MID":
+            for (const [key, value] of Object.entries(mid_data)) {
+                $('#players').append($('<option>', {
+                    text: key
+                }));
+            }
+            break;
+        case "FWD":
+            for (const [key, value] of Object.entries(fwd_data)) {
+                $('#players').append($('<option>', {
+                    text: key
+                }));
+            }
+            break;
+    }
 });
 
 async function loadPlayerData(){
@@ -32,17 +62,51 @@ async function loadPlayerData(){
 }
 
 async function runModel() {
-    try {       
-        const keys = Object.keys(gk_data);
-        const randomKey = keys[Math.floor(Math.random() * keys.length)];
-        const sample = gk_data[randomKey];
-        const playerData = sample["player_data"]
+    try {     
+        var sample = null;
+        var results = null;
+        switch($("#positions").val()){
+            case "GK":
+                sample = gk_data[$("#players").val()];
+                playerData = sample["player_data"]
         
-        const x_input = new ort.Tensor("float32", new Float32Array(playerData.flat()), [1, 6, 10]);
-        const d_input = new ort.Tensor("float32", new Float32Array([0.5]), [1, 1]);
-
-        const feeds = { "player_data": x_input, "team_rating": d_input };
-        const results = await gk_session.run(feeds);
+                x_input = new ort.Tensor("float32", new Float32Array(playerData.flat()), [1, playerData.length, playerData[0].length]);
+                d_input = new ort.Tensor("float32", new Float32Array([0.5]), [1, 1]);
+        
+                feeds = { "player_data": x_input, "team_rating": d_input };
+                results = await gk_session.run(feeds);
+                break;
+            case "DEF":
+                sample = def_data[$("#players").val()];
+                playerData = sample["player_data"]
+        
+                x_input = new ort.Tensor("float32", new Float32Array(playerData.flat()), [1, playerData.length, playerData[0].length]);
+                d_input = new ort.Tensor("float32", new Float32Array([0.5]), [1, 1]);
+        
+                feeds = { "player_data": x_input, "team_rating": d_input };
+                results = await def_session.run(feeds);
+                break;
+            case "MID":
+                sample = mid_data[$("#players").val()];
+                playerData = sample["player_data"]
+        
+                x_input = new ort.Tensor("float32", new Float32Array(playerData.flat()), [1, playerData.length, playerData[0].length]);
+                d_input = new ort.Tensor("float32", new Float32Array([0.5]), [1, 1]);
+        
+                feeds = { "player_data": x_input, "team_rating": d_input };
+                results = await mid_session.run(feeds);
+                break;
+            case "FWD":
+                sample = fwd_data[$("#players").val()];
+                playerData = sample["player_data"]
+        
+                x_input = new ort.Tensor("float32", new Float32Array(playerData.flat()), [1, playerData.length, playerData[0].length]);
+                d_input = new ort.Tensor("float32", new Float32Array([0.5]), [1, 1]);
+        
+                feeds = { "player_data": x_input, "team_rating": d_input };
+                results = await fwd_session.run(feeds);
+                break;
+        } 
 
         // Display result
         document.getElementById("output").innerText = `Model Output: ${results["score_prediction"].data}`;
