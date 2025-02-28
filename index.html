@@ -21,17 +21,13 @@
       Feel free to check out my <a href="./DeanGumas_Resume.pdf" download="DeanGumas_Resume">resume</a>, and send me an email if you'd like to work together!
     </p>
     <p align="center" style="font-family:verdana;text-align:center;margin-left:200px;margin-right:200px">
-      Recently I've been developing a suite of machine learning models to predict player performance in the English Premier League. I'm working now to create a web version that you'll be able to use right from this site, but in the meantime, checkout my progress and paper on the results <a href="https://github.com/DeanGumas/ml-premier-predictor">here</a> 
+      Recently I've been developing a suite of machine learning models to predict player performance in the English Premier League. I'm working now to create a web version that you are able to use right from this site. In the meantime, check out my progress and paper on the results <a href="https://github.com/DeanGumas/ml-premier-predictor">here</a> 
     </p>
     <p align="center" style="font-family:verdana;text-align:center;margin-left:200px;margin-right:200px">
-      For fun, enjoy playing my gravity platformer game below. My new game, "Find Home", is under development <a href="https://github.com/DeanGumas/FindHome">here</a> and you can download an early build using this <a href="https://drive.google.com/file/d/14A_DnfEAjZD5mWxNwFN2dsc0YDlZNO1A/view?usp=sharing">link</a>. Unzip the file and run FindHome.exe to start playing (discrete graphics card recommended). More projects coming soon!
+      For some fun, you can enjoy playing my gravity platformer game below as well. More projects coming soon!
     </p>
-    <p align="center" style="font-family:verdana">
-	<!--This draws the Canvas on the webpage -->
-      <canvas id="mycanvas"></canvas>
-    </p>
-    <h2>Premier League Fantasy Score Predictor - RNN + Attention Model</h2>
-    <form>
+    <h2 align="center">Premier League Fantasy Score Predictor - RNN + Attention Model</h2>
+    <form align="center">
       <label for="positions">Choose a position:</label>
       <select id="positions" name="positions">
         <option hidden disabled selected value></option>
@@ -43,10 +39,15 @@
       <label for="players">Choose a player:</label>
       <select id="players" name="players"></select>
     </form>
-    
-    <button onclick="runModel()">Run Model</button>
-    <p id="output"></p>
-    <p id="real_output"></p>
+    <div style="text-align:center;margin-top: 15px;">  
+      <button onclick="runModel()">Run Model</button>
+    </div>
+      <p id="output" align="center">Model Output:</p>
+    <p id="real_output" align="center">True Output:</p>
+    <p align="center" style="font-family:verdana">
+	    <!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas"></canvas>
+    </p>
     <p align="center" style="font-family:verdana">
       gumas@usc.edu
       571-235-7384
