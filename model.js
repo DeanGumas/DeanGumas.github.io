@@ -42,6 +42,7 @@ $("#positions").on("change", function() {
 
 async function loadPlayerData(){
     // Load all player data from JSON files
+    /*
     const gk_request = await fetch("https://deangumas.github.io/data/GK_2021-22.json");
     gk_data = await gk_request.json();
 
@@ -52,6 +53,18 @@ async function loadPlayerData(){
     mid_data = await mid_request.json();
     
     const fwd_request = await fetch("https://deangumas.github.io/data/FWD_2021-22.json");
+    fwd_data = await fwd_request.json();*/
+
+    const gk_request = await fetch("https://deangumas.github.io/data/2024-25_GK.json");
+    gk_data = await gk_request.json();
+
+    const def_request = await fetch("https://deangumas.github.io/data/2024-25_DEF.json");
+    def_data = await def_request.json();
+    
+    const mid_request = await fetch("https://deangumas.github.io/data/2024-25_MID.json"); 
+    mid_data = await mid_request.json();
+    
+    const fwd_request = await fetch("https://deangumas.github.io/data/2024-25_FWD.json");
     fwd_data = await fwd_request.json();
 
     // Load ONNX models
